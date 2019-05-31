@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://cxf.apache.org/jaxws
+                           http://cxf.apache.org/schemas/jaxws.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--通过spring获取webservice服务-->
+
+    <!-- 配置调用天气服务端的Service-->
+    <jaxws:client id="weatherService" address="http://localhost:8080/ws/weather?wsdl"
+                  serviceClass="cn.cxf.service.WeatherInterface"></jaxws:client>
+
+    <!-- 配置调用手机服务端的Service-->
+    <jaxws:client id="modelService" address="http://ws.webxml.com.cn/WebServices/MobileCodeWS.asmx?wsdl"
+                  serviceClass="cn.com.webxml.MobileCodeWSSoap"></jaxws:client>
+    <!--自动扫描Service-->
+    <context:component-scan base-package="com.syx.controller"/>
+
+</beans>
